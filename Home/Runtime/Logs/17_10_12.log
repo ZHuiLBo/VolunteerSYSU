@@ -1,0 +1,44 @@
+[ 2017-10-12T13:40:34+08:00 ] 0.0.0.0 /volunteer/index.php/Login/login
+INFO: [ route_check ] --START--
+INFO: Run CheckRoute Behavior [ RunTime:0.010277s ]
+INFO: [ route_check ] --END-- [ RunTime:0.010389s ]
+INFO: [ app_begin ] --START--
+INFO: Run ReadHtmlCache Behavior [ RunTime:0.000504s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000594s ]
+INFO: [ view_template ] --START--
+INFO: Run LocationTemplate Behavior [ RunTime:0.044721s ]
+INFO: [ view_template ] --END-- [ RunTime:0.044850s ]
+INFO: [ view_parse ] --START--
+INFO: Run ParseTemplate Behavior [ RunTime:0.230492s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.230648s ]
+INFO: [ view_filter ] --START--
+INFO: Run ContentReplace Behavior [ RunTime:0.030107s ]
+INFO: Run TokenBuild Behavior [ RunTime:0.036031s ]
+INFO: Run WriteHtmlCache Behavior [ RunTime:0.026398s ]
+INFO: Run ShowRuntime Behavior [ RunTime:0.028396s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.121314s ]
+INFO: [ view_end ] --START--
+INFO: Run ShowPageTrace Behavior [ RunTime:0.026550s ]
+INFO: [ view_end ] --END-- [ RunTime:0.026673s ]
+
+[ 2017-10-12T13:40:35+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:40:35+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:52:27+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:52:27+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:52:31+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:52:31+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:53:32+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T13:53:32+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T14:02:44+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T14:02:44+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T14:09:04+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T14:09:05+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T14:27:29+08:00 ] ERR: (ThinkException) 无法加载模块:assets
+[ 2017-10-12T14:27:48+08:00 ] ERR: (ThinkException) 无法加载模块:assets
+[ 2017-10-12T14:27:48+08:00 ] ERR: (ThinkException) 无法加载模块:assets
+[ 2017-10-12T14:28:41+08:00 ] ERR: (ThinkException) 无法加载模块:assets
+[ 2017-10-12T18:32:08+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T18:32:08+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T18:33:11+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T18:33:11+08:00 ] ERR: (ThinkException) 非法操作:assets
+[ 2017-10-12T19:45:30+08:00 ] ERR: (ThinkException) 非法操作:2431412

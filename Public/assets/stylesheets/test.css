@@ -1,0 +1,154 @@
+
+.adminnavbar-brand {
+    color: #1a242f;
+    float: left;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px
+}
+
+
+#adminwrapper {
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -moz-border-radius-topleft: 15px;
+    -webkit-border-top-left-radius: 15px;
+    border-top-left-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -webkit-border-top-right-radius: 15px;
+    border-top-right-radius: 15px;
+    -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+    overflow: hidden
+}
+
+#admincontent, #adminsidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
+#adminsidebar {
+    background-color: #503134;
+    width: 80px;
+    z-index: 1;
+    text-align: center
+}
+
+#adminsidebar i#admintoggle {
+    margin-top: 20px;
+    display: inline-block;
+    color: #3e5771
+}
+
+#adminsidebar ul#admindock {
+    margin: -15px 0 0 0;
+    padding: 0;
+    width: 80px;
+    text-align: center;
+    color: #ecf0f1;
+    border-right: 1px solid #1a242f
+}
+
+#adminsidebar ul#admindock li.launcher {
+    list-style: none;
+    margin-top: 25px;
+    cursor: pointer
+}
+
+#adminsidebar ul#admindock li.launcher > i {
+    display: block;
+    font-size: 2.5em;
+    margin-bottom: -2px
+}
+
+#adminsidebar ul#admindock li.launcher > a {
+    height: 36px;
+    display: block;
+    position: relative;
+    padding-top: 36px;
+    margin-top: -36px;
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 0.8em
+}
+
+#adminsidebar ul#admindock li.launcher ul.dropdown-menu {
+    width: 180px;
+    border-left-width: 0;
+    text-align: left;
+    position: absolute;
+    margin-left: 85px;
+    top: 8px
+}
+
+#adminsidebar ul#admindock li.launcher ul.dropdown-menu > li > a {
+    padding: 5px 20px
+}
+
+#adminsidebar ul#admindock li.launcher ul.dropdown-menu a, #adminsidebar ul#admindock li.launcher ul.dropdown-menu li.dropdown-header {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#adminsidebar ul#admindock li.launcher ul.dropdown-menu li.dropdown-header {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    color: #1abc9c;
+    margin-top: -5px;
+    padding: 5px 20px
+}
+
+#adminsidebar ul#admindock li.launcher ul.dropdown-menu li.dropdown-header:before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    margin-top: 4px;
+    margin-left: -25px;
+    width: 10px;
+    height: 10px;
+    background-color: #2c3e50;
+    content: " ";
+    display: inline-block
+}
+
+#adminsidebar ul#admindock li.launcher:hover > i, #adminsidebar ul#admindock li.launcher:hover > a,
+#sidebar ul#dock li.launcher.active > i, #sidebar ul#dock li.launcher.active > a {
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    color: #1abc9c
+}
+
+#adminsidebar ul#admindock li.launcher:hover:before, #adminsidebar ul#admindock li.launcher.active:before {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    position: absolute;
+    right: -6px;
+    margin-top: 22px
+}
