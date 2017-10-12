@@ -1,0 +1,29 @@
+<div class='navbar navbar-default' id='navbar'>
+    <a class='navbar-brand' href='#'>
+      <i class='icon-beer'></i>
+      中山大学志愿者服务系统
+    </a>
+    <div id="judge">
+    </div>
+    <ul class='nav navbar-nav pull-right'>
+  
+      <li class='dropdown user'>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+          <strong onchange="getCookie(username)">
+            <script>
+                document.write(getCookie("username"))
+            </script>
+          </strong>
+          <b class='caret'></b>
+        </a>
+        <ul class='dropdown-menu'>
+          <li>
+            <a href='userInfo.html'>设置</a>
+          </li>
+          <li>
+            <a href="{:U('Login/doLogout')}">退出</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>

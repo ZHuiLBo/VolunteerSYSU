@@ -21,10 +21,67 @@
 <!-- Navbar -->
 <script src="__PUBLIC__/assets/jquery/jquery-3.1.1.js"></script>
 <!--<script src="assets/javascripts/login.js" type="text/javascript"></script>-->
-<include file="Public:header"/>
+<div class='navbar navbar-default' id='navbar'>
+  <a class='navbar-brand' href='#'>
+    <i class='icon-beer'></i>
+    中山大学志愿者服务系统
+  </a>
+  <div id="judge">
+  </div>
+  <ul class='nav navbar-nav pull-right'>
+
+    <li class='dropdown user'>
+      <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+        <strong onchange="getCookie(username)">
+          <script>
+              document.write(getCookie("username"))
+          </script>
+        </strong>
+        <b class='caret'></b>
+      </a>
+      <ul class='dropdown-menu'>
+        <li>
+          <a href='userInfo.html'>设置</a>
+        </li>
+        <li>
+          <a href="{:U('Login/doLogout')}">退出</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 <div id='wrapper'>
   <!-- Sidebar -->
-  <include file="Public:sidebar"/>
+  <section id='sidebar'>
+    <i class='icon-align-justify icon-large' id='toggle'></i>
+    <ul id='dock'>
+      <li class='launcher'>
+                <i class='icon-dashboard'></i>
+                <img src="__PUBLIC__/assets/images/public.png" alt="公共数据集" width="40" height="38">
+                <a href="{:U('Attend/allactiv')}">志愿者活动</a>
+            </li>
+            <li class='launcher'>
+                <i class='icon-file-text-alt'></i>
+                <img src="__PUBLIC__/assets/images/private.png" alt="私有数据集" width="34" height="38">
+                <a href="involvement.html">报名情况</a>
+            </li>
+            <li class='launcher'>
+                <i class='icon-table'></i>
+                <img src="__PUBLIC__/assets/images/box.png" alt="收藏数据集" width="34" height="38">
+                <a href="publishactiv.html">发布活动</a>
+            </li>
+            <li class='launcher'>
+                <i class='icon-table'></i>
+                <img src="__PUBLIC__/assets/images/box.png" alt="收藏数据集" width="34" height="38">
+                <a href="checktime.html">查看时长</a>
+             </li>
+            <li class='launcher'>
+                <i class='icon-file-text-alt'></i>
+                <img src="__PUBLIC__/assets/images/man.png" alt="个人中心" width="34" height="38">
+                <a href="userInfo.html">个人信息</a>
+            </li>
+    </ul>
+  </section>
   <!-- Tools -->
   <!--<section id='tools'>-->
     <!--<ul class='breadcrumb' id='breadcrumb'>-->
