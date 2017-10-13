@@ -18,11 +18,12 @@ class LoginAction extends Action {
 			$user=M('User');
 			$where['username']=$username;
 			$where['password']=$password;
-      $arr=$user->field('user_id, role')->where($where)->find();
+      $arr=$user->field('user_id, role, name')->where($where)->find();
       
 			if($arr){
         //存在 允许登录 
 				$_SESSION['username']=$username;
+				$_SESSION['name']=$arr['name'];
         $_SESSION['user_id']=$arr['user_id'];
         $_SESSION['role']=$arr['role'];
         
