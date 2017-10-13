@@ -42,34 +42,34 @@
           <table style="padding-bottom:10px;">
 
             <tr>
-              <td>用户名：</td>
+              <td>用户名：{$info.username}</td>
               <td></td>
             </tr>
             <tr>
-              <td>姓名：</td>
+              <td>姓名：{$info.name}</td>
               <td></td>
             </tr>
             <tr>
-              <td>学院：</td>
+              <td>学院：{$info.academy}</td>
               <td></td>
             </tr>
             <tr>
-              <td>校区：</td>
+              <td>校区：{$info.campus}</td>
               <td></td>
             </tr>
 
             <tr>
-              <td>入学年份：</td>
+              <td>入学年份：{$info.year}</td>
               <td></td>
             </tr>
 
             <tr>
               <td>联系电话：</td>
-              <td><input type="text" id="phone" disabled="disabled" /></td>
+              <td><input type="text" id="phone" disabled="disabled" value="{$info.phone_number}"/></td>
             </tr>
             <tr>
-              <td>密码： </td>
-              <td><input type="text" id="password" disabled="disabled" /></td>
+              <td>密码：</td>
+              <td><input type="password" id="password" disabled="disabled" value="{$info.password}"/></td>
             </tr>
           </table>
         </div>
