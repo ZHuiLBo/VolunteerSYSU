@@ -57,10 +57,15 @@
                     <td>具体描述：</td>
                 </tr>
             </table>
-
+                <!--[start]以下这段html代码需要根据不同条件显示不同的东西-->
+                <!--if 未报名&&未到截至时间 显示“申报志愿活动”按钮，可点击出弹框确认联系电话-->
+                <!--if 已报名
+                     显示“已报名”label和“取消报名”按钮，可点击出弹框确认取消报名
+                    else if 过期
+                     显示“报名截至”label-->
                 <input type="button" onclick="requestActiv()" value="申请">
-                <a href="allactiv.html">返回</a>
-
+                <a href="{:U('Attend/getAllActiv')}">返回</a>
+                <!--[end]-->
             </div>
 
         </div>
