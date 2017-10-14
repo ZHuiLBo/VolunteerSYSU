@@ -12,61 +12,60 @@
 <div>
     <div id='content'>
         <div class='panel panel-default grid' id="caseInfo" style="border:0px;">
+            <form>
             <table style="border-collapse:separate; border-spacing:10px">
                 <tr>
                     <td>活动标题：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="title"/></td>
                 </tr>
                 <br>
                 <tr>
                     <td>主办单位：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="sponsor"/></td>
                 </tr>
                 <tr>
-                    <td>活动时间：</td>
-                    <td><input type="text"/></td>
+                    <td>活动日期：</td>
+                    <td><input type="date" value="{$today}" min="{$today}" id="activity_date"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
                 </tr>
                 <tr>
-                    <td>截止时间：</td>
-                    <td><input type="text"/></td>
+                    <td>截止日期：</td>
+                    <td><input type="date" value="{$today}" min="{$today}" id="deadline"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
                 </tr>
                 <tr>
                     <td>面向人群：</td>
-                    <td><input type="text"/></td>
+                    <td>
+                        <select id="face_to">
+                            <option value ="0">东校</option>
+                            <option value ="1">南校</option>
+                            <option value="2">全校</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>活动地点：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="activity_location"/></td>
                 </tr>
                 <tr>
                     <td>招募人数：</td>
-                    <td><input type="text"/></td>
-                </tr>
-                <tr>
-                    <td>已报名人数：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="recruitment_count"/></td>
                 </tr>
                 <tr>
                     <td>服务时长：</td>
-                    <td><input type="text"/></td>
-                </tr>
-                <tr>
-                    <td>特殊需求：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="hours_a_day"/></td>
                 </tr>
                 <tr>
                     <td>QQ群号：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="qq_number"/></td>
                 </tr>
                 <tr>
                     <td>具体描述：</td>
-                    <td><input type="text"/></td>
+                    <td><input type="text" id="detail"/></td>
                 </tr>
             </table>
-
+            
             <input type="button" onclick="publishActiv()" value="发布">
             <a href="{:U('Publish/getAllPublish')}">取消</a>
-
+            </form>
         </div>
 
     </div>

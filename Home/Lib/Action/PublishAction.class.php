@@ -14,6 +14,9 @@ class PublishAction extends Action {
 
     //显示新建发布页面
     public function newActiv(){
+        //活动日期和截至日期不能早于当天
+        $today=date("Y-m-d");
+        $this->assign('today',$today);
         $this->display();
     }
 
