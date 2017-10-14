@@ -23,16 +23,16 @@
        function confirmAct(){ 
           //获取当前的 电话号码 和 密码
           var phone = document.getElementById("phone").value;
-          var pw = document.getElementById("password").value;
+          var pw = document.getElementById("password").value;//新密码
+          var oldpw = document.getElementById("OldPW").value;//原密码（md5加密）
           alert(phone);
           alert(pw);
           if(confirm('联系电话改为:'+phone+'\n密码改为：'+pw)) 
           { 
-              //window.location.href="";
               $.ajax({
                         type:"POST",
                         url:"{:U('Info/editInfo')}",
-                        data:{phone:phone, pw:pw},
+                        data:{phone:phone, pw:pw, oldpw:oldpw},
                         dataType: "json",
                         success:function(data){
                             alert(data.content);
@@ -98,6 +98,7 @@
         <button type="button" onclick="change()">编辑</button>
         <!--<button type="button" onclick="userInfoPage_changeUserInfo()">保存</button>-->
         <button type="button" onclick="confirmAct()" id='saveButton' disabled="disabled">保存</button>
+        <input type="hidden" id="OldPW" value="{$info.password}"/>
       </div>
     </div>
   </div>
