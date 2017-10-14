@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2017-10-13 13:41:39
+Date: 2017-10-14 21:52:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `username` varchar(8) NOT NULL COMMENT '用户名',
-  `password` varchar(16) NOT NULL DEFAULT '123456' COMMENT '密码',
+  `password` varchar(50) NOT NULL DEFAULT 'e10adc3949ba59abbe56e057f20f883e' COMMENT '密码',
   `campus` enum('1','0') NOT NULL COMMENT '校区，0:东校，1：南校',
   `year` year(4) NOT NULL COMMENT '入学年份',
   `phone_number` char(11) NOT NULL COMMENT '11位手机号',
@@ -84,7 +84,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '17214719', '123456', '0', '2017', '12345678900', '数据科学与计算机学院', '赵惠', '0');
-INSERT INTO `user` VALUES ('2', '17214720', '123456', '0', '2017', '12345678900', '马克思主义学院', '哈哈', '0');
-INSERT INTO `user` VALUES ('3', '17214721', '123456', '0', '2017', '12345678900', '文学院', '啦啦', '0');
-INSERT INTO `user` VALUES ('4', '12345678', '123456', '0', '2017', '12345678900', '数据科学与计算机学院', '管理员', '1');
+INSERT INTO `user` VALUES ('1', '17214719', 'e10adc3949ba59abbe56e057f20f883e', '0', '2017', '18038096606', '数据科学与计算机学院', '赵惠', '0');
+INSERT INTO `user` VALUES ('2', '17214720', 'e10adc3949ba59abbe56e057f20f883e', '0', '2017', '18138096606', '马克思主义学院', '哈哈', '0');
+INSERT INTO `user` VALUES ('3', '17214721', 'e10adc3949ba59abbe56e057f20f883e', '0', '2017', '12345678900', '文学院', '啦啦', '0');
+INSERT INTO `user` VALUES ('4', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '0', '2017', '12345678900', '数据科学与计算机学院', '管理员', '1');
