@@ -12,7 +12,7 @@ class LoginAction extends Action {
 			
       //接受值
 			$username=$_POST['username'];
-      $password=$_POST['password'];
+      $password=md5($_POST['password']);
 
       //判断用户在数据库中是否存在
 			$user=M('User');
