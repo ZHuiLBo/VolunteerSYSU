@@ -25,9 +25,12 @@ class InfoAction extends Action {
 			$this->display();
 		}
 		
-		//修改个人信息
-		public function editInfo(){
-			$this->redirect('Info/showInfo');
-		}
+	//修改个人信息
+	public function editInfo(){
+		$phone=$_POST['phone'];
+		$pw=$_POST['pw'];
+		$this->ajaxReturn($pw);
+		//$this->redirect('Info/showInfo');
+	}
 
 }

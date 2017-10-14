@@ -9,15 +9,40 @@
     <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-      <script>
+    <script>
+      /*
        window.onload = function(){
           userInfoPage_getUserInfo();
-      };
+       };*/
        function change(){
            document.getElementById("phone").disabled = false;
            document.getElementById("password").disabled = false;
-           //document.getElementById("date").disabled = false;
+           document.getElementById("saveButton").disabled = false;
        }
+       //弹框确认修改
+       function confirmAct(){ 
+          //获取当前的 电话号码 和 密码
+          var phone = document.getElementById("phone").value;
+          var pw = document.getElementById("password").value;
+          alert(phone);
+          alert(pw);
+          if(confirm('联系电话改为:'+phone+'\n密码改为：'+pw)) 
+          { 
+              //window.location.href="";
+              $.ajax({
+                        type:"POST",
+                        url:"{:U('Info/editInfo')}",
+                        data:{phone:phone, pw:pw},
+                        dataType: "json",
+                        success:function(ss){
+                            alert(ss);
+                        },
+                        error:function(ss){
+                            alert("bbbb");
+                        }
+                    });
+          } 
+       } 
     </script>
   </head>
   <body class='main page'>
@@ -74,7 +99,8 @@
           </table>
         </div>
         <button type="button" onclick="change()">编辑</button>
-        <button type="button" onclick="userInfoPage_changeUserInfo()">保存</button>
+        <!--<button type="button" onclick="userInfoPage_changeUserInfo()">保存</button>-->
+        <button type="button" onclick="confirmAct()" id='saveButton' disabled="disabled">保存</button>
       </div>
     </div>
   </div>
