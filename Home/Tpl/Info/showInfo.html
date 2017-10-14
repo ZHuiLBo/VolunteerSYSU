@@ -34,11 +34,8 @@
                         url:"{:U('Info/editInfo')}",
                         data:{phone:phone, pw:pw},
                         dataType: "json",
-                        success:function(ss){
-                            alert(ss);
-                        },
-                        error:function(ss){
-                            alert("bbbb");
+                        success:function(data){
+                            alert(data.content);
                         }
                     });
           } 
