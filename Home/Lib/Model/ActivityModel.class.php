@@ -16,12 +16,17 @@
 
 		protected $_auto=array(
 			array('publish_time', 'getCurrentTime', 3, 'callback'), // 在新增和编辑时在publish_time填入当前时间戳,还有问题
+			array('publisher', 'getPublisher', 3, 'callback'), // 在新增和编辑时在publish_time填入当前时间戳,还有问题
 			array('audit_result','0'), // 在新增时在audit_result字段填入0,表示待审核
 			array('number_of_applicants',0), // 在新增时在number_of_applicants字段填入0,表示已报名人数为0
 		);
 
 		protected function getCurrentTime(){
 			return date('Y-m-d H:i:s',time());
+		}
+
+		protected function getPublisher(){
+			return $_SESSION['user_id'];
 		}
 		/*
 		protected function checkCode($code){

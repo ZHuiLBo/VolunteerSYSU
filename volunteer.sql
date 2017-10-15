@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50524
 File Encoding         : 65001
 
-Date: 2017-10-14 21:52:36
+Date: 2017-10-15 13:21:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,12 +35,16 @@ CREATE TABLE `activity` (
   `publish_time` datetime NOT NULL COMMENT '发布时间，先表示活动创建时间，审核后表示通过后的时间',
   `audit_result` enum('2','1','0') NOT NULL DEFAULT '0' COMMENT '管理员审核情况，0-待审核，1-审核通过，2-审核不通过',
   `audit_opinion` varchar(255) DEFAULT NULL COMMENT '审核意见',
-  PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `publisher` int(11) NOT NULL,
+  PRIMARY KEY (`activity_id`),
+  KEY `发布人外键` (`publisher`),
+  CONSTRAINT `发布人外键` FOREIGN KEY (`publisher`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
+INSERT INTO `activity` VALUES ('4', 'z', '2', '0', '2017-12-22', '2017-11-23', '0', 'z', 'z', '2', 'z', 'z', '2017-10-15 13:19:59', '0', null, '1');
 
 -- ----------------------------
 -- Table structure for `application`
