@@ -40,12 +40,17 @@
                     <!--&lt;!&ndash;<input placeholder='关键字过滤' type='text' id="keyword">&ndash;&gt;-->
                     <!--<button type="button" onclick="newactiv()">新建活动</button>-->
                 <!--</li>-->
+                <select style="float:right" id="selectAuditResult" name="selectAuditResult">
+                    <option value ="0">待审核</option>
+                    <option value ="1">审核通过</option>
+                    <option value ="2">审核不通过</option>
+                </select>
 
             </div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick="selectAll('select','PubDataSet')"><span  style="vertical-align:middle;">全选</span></th>
+                    <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick="selectAll('select','PubDataSet')"><span  style="vertical-align:middle;">全选</span></th>-->
                     <th>活动名称</th>
                     <th>发布时间</th>
                     <th>审核情况</th>
@@ -54,7 +59,7 @@
                 </thead>
                 <tbody id='publishactivtable'>
                 <tr>
-                    <th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick=""><span  style="vertical-align:middle;"></span></th>
+                    <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick=""><span  style="vertical-align:middle;"></span></th>-->
                     <th>活动1</th>
                     <th>2017-10-12</th>
                     <th>正在审核</th>
