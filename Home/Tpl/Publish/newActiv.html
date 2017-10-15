@@ -5,36 +5,52 @@
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>新建活动</title>
     <load href="__PUBLIC__/assets/stylesheets/application-a07755f5.css" />
-
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        //提交新活动信息
+        function publishActivity(){ 
+            $.ajax({
+                type:"POST",
+                url:"{:U('Publish/publish')}",
+                data:$('#newActivForm').serialize(),
+                //dataType: "json",
+                success:function(data){
+                    alert(data.content);
+                    if(data.goBack==1)
+                        window.location.href="{:U('Publish/getAllPublish')}";
+                }
+            });
+        } 
+    </script>
 </head>
 <body class='main page'>
 <!--<script src="assets/javascripts/login.js" type="text/javascript"></script>-->
 <div>
     <div id='content'>
         <div class='panel panel-default grid' id="caseInfo" style="border:0px;">
-            <form>
+            <form action='' name='newActivForm' id='newActivForm'>
             <table style="border-collapse:separate; border-spacing:10px">
                 <tr>
                     <td>活动标题：</td>
-                    <td><input type="text" id="title"/></td>
+                    <td><input type="text" id="title" name="title"/></td>
                 </tr>
                 <br>
                 <tr>
                     <td>主办单位：</td>
-                    <td><input type="text" id="sponsor"/></td>
+                    <td><input type="text" id="sponsor" name="sponsor"/></td>
                 </tr>
                 <tr>
                     <td>活动日期：</td>
-                    <td><input type="date" value="{$today}" min="{$today}" id="activity_date"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
+                    <td><input type="date" value="{$today}" min="{$today}" id="activity_date" name="activity_date"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
                 </tr>
                 <tr>
                     <td>截止日期：</td>
-                    <td><input type="date" value="{$today}" min="{$today}" id="deadline"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
+                    <td><input type="date" value="{$today}" min="{$today}" id="deadline" name="deadline"/></td><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
                 </tr>
                 <tr>
                     <td>面向人群：</td>
                     <td>
-                        <select id="face_to">
+                        <select id="face_to" name="face_to">
                             <option value ="0">东校</option>
                             <option value ="1">南校</option>
                             <option value="2">全校</option>
@@ -43,27 +59,26 @@
                 </tr>
                 <tr>
                     <td>活动地点：</td>
-                    <td><input type="text" id="activity_location"/></td>
+                    <td><input type="text" id="activity_location" name="activity_location"/></td>
                 </tr>
                 <tr>
                     <td>招募人数：</td>
-                    <td><input type="text" id="recruitment_count"/></td>
+                    <td><input type="text" id="recruitment_count" name="recruitment_count"/></td>
                 </tr>
                 <tr>
-                    <td>服务时长：</td>
-                    <td><input type="text" id="hours_a_day"/></td>
+                    <td>服务时长(/天)：</td>
+                    <td><input type="text" id="hours_a_day" name="hours_a_day"/></td>
                 </tr>
                 <tr>
                     <td>QQ群号：</td>
-                    <td><input type="text" id="qq_number"/></td>
+                    <td><input type="text" id="qq_number" name="qq_number"/></td>
                 </tr>
                 <tr>
                     <td>具体描述：</td>
-                    <td><input type="text" id="detail"/></td>
+                    <td><input type="text" id="detail" name="detail"/></td>
                 </tr>
             </table>
-            
-            <input type="button" onclick="publishActiv()" value="发布">
+            <input type="button" onclick="publishActivity()" value="发布">
             <a href="{:U('Publish/getAllPublish')}">取消</a>
             </form>
         </div>

@@ -2,14 +2,14 @@
 // 发布活动
 class PublishAction extends Action {
 
-	//查看自己发布的所有活动列表
+    //查看自己发布的所有活动列表
     public function getAllPublish(){
-		$this->display('./Home/Tpl/Publish/publishActiv.html');
+        $this->display('./Home/Tpl/Publish/publishActiv.html');
     }
 
     //查看某一活动的报名情况
     public function getAllApply(){
-		$this->display('./Home/Tpl/Publish/checkactiv.html');
+        $this->display('./Home/Tpl/Publish/checkactiv.html');
     }
 
     //显示新建发布页面
@@ -22,7 +22,26 @@ class PublishAction extends Action {
 
     //发布，并跳转至 自己发布的活动列表页面
     public function publish(){
-        $this->redirect('Publish/getAllPublish');
+
+        // 实例化Activity模型
+        $Activity = D('Activity');
+        $result=$Activity->create($_POST,1);
+
+        // 根据表单提交的POST数据创建数据对象
+        if (!$result){ // 指定新增数据
+             // 如果创建失败 表示验证没有通过 输出错误提示信息
+             $returnData['content']=$Activity->getError();
+             $returnData['goBack']=0;//表示停留在当前页面
+        }else{
+             // 验证通过 
+             $Activity->add();
+             $returnData['content']='成功创建一个活动！';
+             $returnData['goBack']=1;//表示创建成功后，要跳转至 我的发布 页面
+        }
+        $this->ajaxReturn($returnData,'json');
+        
+        //$this->redirect('Publish/getAllPublish');
+       
     }
 
     //确认录用
