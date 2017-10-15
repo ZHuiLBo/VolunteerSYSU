@@ -2,8 +2,26 @@
 // 发布活动
 class PublishAction extends Action {
 
-    //查看自己发布的所有活动列表
+    //查看自己发布的所有活动列表(分 待审核、审核通过、审核不通过 三种)
     public function getAllPublish(){
+        $where['publisher']=$_SESSION['user_id'];
+        if($_GET['selectAuditResult']!=null)
+            $where['audit_result']=$_GET['selectAuditResult'];
+        else
+            $where['audit_result']='0';
+        $ar=$where['audit_result'];
+        $intAr=$where['audit_result'];
+        if($ar=='0')
+            $ar='待审核';
+        elseif($ar=='1')
+            $ar='审核通过';
+        else
+            $ar='审核不通过';
+        $Activity=M('Activity');
+        $arr=$Activity->field('activity_id, title, publish_time')->where($where)->order('publish_time desc')->select();
+        $this->assign('activties',$arr);
+        $this->assign('ar',$ar);
+        $this->assign('intAr',$intAr);
         $this->display('./Home/Tpl/Publish/publishActiv.html');
     }
 

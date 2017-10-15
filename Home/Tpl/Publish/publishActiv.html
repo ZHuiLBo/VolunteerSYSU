@@ -14,6 +14,15 @@
         window.onload = function(){
             pushactivDataPage();
         };
+
+        $(document).ready(function(){
+
+            $("#selectAuditResult").val({$intAr});
+            $("#selectAuditResult").change(function(){
+                window.location.href = "__APP__/Publish/getAllPublish?selectAuditResult="+$("#selectAuditResult").val();
+            });
+
+        });
     </script>
 
 </head>
@@ -60,10 +69,12 @@
                 <tbody id='publishactivtable'>
                 <tr>
                     <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick=""><span  style="vertical-align:middle;"></span></th>-->
-                    <th>活动1</th>
-                    <th>2017-10-12</th>
-                    <th>正在审核</th>
-                    <th><a href="{:U('Publish/getAllApply')}">查看</a></th>
+                    <foreach name="activties" item="val">
+                    <th>{$val.title}</th>
+                    <th>{$val.publish_time}</th>
+                    <th>{$ar}</th>
+                    <th><a href="{:U('Publish/getAllApply?activId='.$val['activity_id'])}">查看</a></th>
+                    </foreach>
                 </tr>
                 </tbody>
             </table>
