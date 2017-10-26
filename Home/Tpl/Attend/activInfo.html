@@ -6,12 +6,8 @@
     <title>活动详情</title>
     <load href="__PUBLIC__/assets/stylesheets/application-a07755f5.css" />
 
-    <script>
-        window.onload = function()
-        {
-            activInfoDataPage_getCaseContent();
-        }
-    </script>
+    <script src="__PUBLIC__/assets/jquery/jquery-3.1.1.js"></script>
+
 </head>
 <body class='main page'>
 <!--<script src="assets/javascripts/login.js" type="text/javascript"></script>-->
@@ -20,41 +16,41 @@
         <div class='panel panel-default grid' id="caseInfo" style="border:0px;">
             <table style="border-collapse:separate; border-spacing:10px">
                 <tr>
-                    <td>活动标题：</td>
+                    <td>活动标题：{$activity.title}</td>
                 </tr>
                 <br>
                 <tr>
-                    <td>主办单位：</td>
+                    <td>主办单位：{$activity.sponsor}</td>
                 </tr>
                 <tr>
-                    <td>活动时间：</td>
+                    <td>活动时间：{$activity.activity_date}</td>
                 </tr>
                 <tr>
-                    <td>截止时间：</td>
+                    <td>截止时间：{$activity.deadline}</td>
                 </tr>
                 <tr>
-                    <td>面向人群：</td>
+                    <td>面向人群：{$activity.face_to}</td>
                 </tr>
                 <tr>
-                    <td>活动地点：</td>
+                    <td>活动地点：{$activity.activity_location}</td>
                 </tr>
                 <tr>
-                    <td>招募人数：</td>
+                    <td>招募人数：{$activity.recruitment_count}</td>
                 </tr>
                 <tr>
-                    <td>已报名人数：</td>
+                    <td>已报名人数：{$activity.number_of_applicants}</td>
                 </tr>
                 <tr>
-                    <td>服务时长：</td>
+                    <td>服务时长：{$activity.hours_a_day}</td>
                 </tr>
                 <tr>
                     <td>特殊需求：</td>
                 </tr>
                 <tr>
-                    <td>QQ群号：</td>
+                    <td>QQ群号：{$activity.qq_number}</td>
                 </tr>
                 <tr>
-                    <td>具体描述：</td>
+                    <td>具体描述：{$activity.detail}</td>
                 </tr>
             </table>
                 <!--[start]以下这段html代码需要根据不同条件显示不同的东西-->
@@ -63,7 +59,7 @@
                      显示“已报名”label和“取消报名”按钮，可点击出弹框确认取消报名
                     else if 过期
                      显示“报名截至”label-->
-                <input type="button" onclick="requestActiv()" value="申请">
+                <input type="button" value="申请" id='application'>
                 <a href="{:U('Attend/getAllActiv')}">返回</a>
                 <!--[end]-->
             </div>
@@ -74,3 +70,28 @@
 
 </body>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        var activity_id = {$activity.activity_id};
+        $('#application').click(function(){
+            $.ajax({
+                url:'./applyActicity',
+                type:'GET', //GET
+                async:true,    //或false,是否异步
+                data:{
+                    'activity_id' : activity_id
+                },
+                success:function(data,textStatus,jqXHR){
+                    $('#application').val(data);
+                    $('#application').attr('disabled', "disabled");
+                },
+                error:function(xhr,textStatus){
+                    console.log('错误')
+                    console.log(xhr)
+                    console.log(textStatus)
+                },
+            })
+        })
+    });
+</script>
