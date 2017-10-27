@@ -10,7 +10,6 @@
 			array('recruitment_count','/^[1-9]\d*$/','招募人数不能为空且必须为正整数！',1,'regex',3),
 			array('hours_a_day','/^(([1-9])|(1\d)|(2[0-4]))$/','服务时长必须在1至24之间',1,'regex',3),
 			array('qq_number','require','QQ群号不能为空！',1,'',3),
-			array('qq_number','require','QQ群号不能为空！',1,'',3),
 			array('detail','require','具体描述不能为空！',1,'',3),
 		);
 
