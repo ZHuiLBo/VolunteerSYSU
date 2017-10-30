@@ -67,15 +67,14 @@
                 </tr>
                 </thead>
                 <tbody id='publishactivtable'>
+                <foreach name="activties" item="val">
                 <tr>
-                    <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick=""><span  style="vertical-align:middle;"></span></th>-->
-                    <foreach name="activties" item="val">
                     <th>{$val.title}</th>
                     <th>{$val.publish_time}</th>
                     <th>{$ar}</th>
                     <th><a href="{:U('Publish/getAllApply?activId='.$val['activity_id'])}">查看</a></th>
-                    </foreach>
                 </tr>
+                </foreach>
                 </tbody>
             </table>
 
