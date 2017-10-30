@@ -18,9 +18,11 @@
           <b class='caret'></b>
         </a>
         <ul class='dropdown-menu'>
+          <if condition="$_SESSION['role'] eq 0">
           <li>
             <a href="{:U('Info/showInfo')}">设置</a>
           </li>
+          </if>
           <li>
             <a href="{:U('Login/doLogout')}">退出</a>
           </li>
