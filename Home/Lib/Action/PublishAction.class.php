@@ -27,7 +27,7 @@ class PublishAction extends Action {
 
     //查看某一活动的报名情况
     public function getAllApply(){
-        $this->display('./Home/Tpl/Publish/checkactiv.html');
+        $this->display('./Home/Tpl/Publish/checkActiv.html');
     }
 
     //显示新建发布页面
