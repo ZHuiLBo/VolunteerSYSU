@@ -53,17 +53,31 @@
                     <td>具体描述：{$activity.detail}</td>
                 </tr>
             </table>
-                <!--[start]以下这段html代码需要根据不同条件显示不同的东西-->
-                <!--if 未报名&&未到截至时间 显示“申报志愿活动”按钮，可点击出弹框确认联系电话-->
-                <!--if 已报名
-                     显示“已报名”label和“取消报名”按钮，可点击出弹框确认取消报名
-                    else if 过期
-                     显示“报名截至”label-->
-                <input type="button" value="申请" id='application'>
-                <a href="{:U('Attend/getAllActiv')}">返回</a>
-                <!--[end]-->
-            </div>
+            <!--[start]以下这段html代码需要根据不同条件显示不同的东西-->
+            <!--if 未报名&&未到截至时间 显示“申报志愿活动”按钮，可点击出弹框确认联系电话-->
+            <!--if 已报名
+                 显示“已报名”label和“取消报名”按钮，可点击出弹框确认取消报名
+                else if 过期
+                 显示“报名截至”label-->
 
+            <!-- 如果已经报名 -->
+            <if condition="($apply_state eq 1)">
+                <label>已报名</label>
+                <input type="button" value="取消报名" id='unapply'>
+                <a href="{:U('Attend/getAllActiv')}">返回</a>
+            <!-- 人数满了 -->
+            <elseif condition="($apply_number eq 1)"/>
+                <input type="button" value="人数已满" disabled="disabled">
+                <a href="{:U('Attend/getAllActiv')}">返回</a>
+            <!-- 如果没有过期 -->
+            <elseif condition="($apply_date eq 0)"/>
+                <input type="button" value="申请" id='apply'>
+                <a href="{:U('Attend/getAllActiv')}">返回</a>
+            <!-- 如果过期了 -->
+            <else />
+                <input type="button" value="已过报名时间" disabled="disabled">
+                <a href="{:U('Attend/getAllActiv')}">返回</a>
+            </if>
         </div>
     </div>
 </div>
@@ -74,23 +88,26 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var activity_id = {$activity.activity_id};
-        $('#application').click(function(){
+        $('#apply').click(function(){
             $.ajax({
-                url:'./applyActicity',
+                url:'./applyActivity',
                 type:'GET', //GET
                 async:true,    //或false,是否异步
                 data:{
                     'activity_id' : activity_id
                 },
-                success:function(data,textStatus,jqXHR){
-                    $('#application').val(data);
-                    $('#application').attr('disabled', "disabled");
+                success:function(){window.location.reload()},
+            })
+        })
+        $('#unapply').click(function(){
+            $.ajax({
+                url:'./unapplyActivity',
+                type:'GET', //GET
+                async:true,    //或false,是否异步
+                data:{
+                    'activity_id' : activity_id
                 },
-                error:function(xhr,textStatus){
-                    console.log('错误')
-                    console.log(xhr)
-                    console.log(textStatus)
-                },
+                success:function(){window.location.reload()},
             })
         })
     });
