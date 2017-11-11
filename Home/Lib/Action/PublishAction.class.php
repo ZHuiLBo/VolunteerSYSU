@@ -27,6 +27,47 @@ class PublishAction extends Action {
 
     //查看某一活动的报名情况
     public function getAllApply(){
+        if($_GET['activId']==null)
+            $this->error("没得到活动编号哦！");
+
+        $where['activity_id']=$_GET['activId'];
+
+        //得到活动标题、要招募的人数、活动日期、截止日期
+        $Activity=M('Activity');
+        $activ=M('Activity')->field('title, recruitment_count, activity_date, deadline')->where($where)->find();
+        $this->assign('activ',$activ);
+
+        $Application = M('Application');
+
+        //得到已报名人数
+        $apply_count=$Application->where($where)->count();
+        $this->assign('apply_count',$apply_count);
+
+        //得到已录用人数
+        $where['application_state']='1';//已录用
+        $hire_count=$Application->where($where)->count();
+        $this->assign('hire_count',$hire_count);
+
+        //报名截至日期之前，显示（录用/不录用 按钮）,所有报名的人；中间日期无任何按钮，只显示已录用的人；活动日期之后，显示（完成/未完成 按钮），只显示已录用的人
+        $currentTime=time();
+        //$currentTime=strtotime('2017-11-24');
+        $sub = $currentTime - strtotime($activ['deadline']);
+        $sub2 = $currentTime - strtotime($activ['activity_date']);
+        if($sub<=0){//当前时间在报名截至时间之前
+            $flag='0';
+        }elseif($sub2<=0){//当前时间在报名截至时间之后，活动日期之间
+            $flag='1';
+            $where['application_state']='1';//只显示已录用的人
+        }else{//当前时间在活动日期之后
+            $flag='2';
+            $where['application_state']='1';//只显示已录用的人
+        }
+
+        //得到学生信息，不同时间显示不同的人（所有报名的人或者已录用的人）
+        $result=$Application->join('user ON user.user_id = application.user_id')->where($where)->select();
+        $this->assign('results',$result);
+
+        $this->assign('flag',$flag);
         $this->display('./Home/Tpl/Publish/checkActiv.html');
     }
 
@@ -64,12 +105,26 @@ class PublishAction extends Action {
 
     //确认录用
     public function confirmHire(){
-        $this->redirect('Publish/getAllApply');
+        $Application = M('Application');
+        $where['application_id'] = (int)$_GET['applicationId'];
+        $result=$Application->where($where)->setField('application_state', $_GET['state']);
+        $activId=$Application->where($where)->getField('activity_id');
+        if($result!=false)
+            $this->redirect('Publish/getAllApply', array('activId' => $activId));
+        else
+            $this->error("修改报名状态出错啦！");
     }
 
     //确认完成情况
     public function confirmDone(){
-        $this->redirect('Publish/getAllApply');
+        $Application = M('Application');
+        $where['application_id'] = (int)$_GET['applicationId'];
+        $result=$Application->where($where)->setField('performance', $_GET['performance']);
+        $activId=$Application->where($where)->getField('activity_id');
+        if($result!=false)
+            $this->redirect('Publish/getAllApply', array('activId' => $activId));
+        else
+            $this->error("修改活动完成情况出错啦！");
     }
 
 }

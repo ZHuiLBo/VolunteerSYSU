@@ -11,6 +11,16 @@
         {
             checkactivDataPage_getCaseContent();
         }
+
+        //修改某同学的报名状态
+        function editHire(applicaitonId, state){ 
+            window.location.href="__APP__/Publish/confirmHire?applicationId="+applicaitonId+"&state="+state;
+        }
+
+        //修改某同学的活动完成情况
+        function editDone(applicaitonId, performance){ 
+            window.location.href="__APP__/Publish/confirmDone?applicationId="+applicaitonId+"&performance="+performance;
+        }
     </script>
 </head>
 <body class='main page'>
@@ -21,16 +31,20 @@
             <table style="border-collapse:separate; border-spacing:10px">
                 <tr>
                     <td>活动标题：</td>
+                    <td>{$activ.title}</td>
                 </tr>
                 <br>
                 <tr>
                     <td>报名总人数：</td>
+                    <td>{$apply_count}</td>
                 </tr>
                 <tr>
                     <td>已录用：</td>
+                    <td>{$hire_count}</td>
                 </tr>
                 <tr>
                     <td>招募人数：</td>
+                    <td>{$activ.recruitment_count}</td>
                 </tr>
             </table>
 
@@ -43,9 +57,35 @@
                 </tr>
                 </thead>
                 <tbody id='checkactivtable'>
-                     <th>张三</th>
-                     <th>李四</th>
-                     <th><button type="button" onclick="">录用</button>  <button type="button" onclick="">完成</button></th>
+                    <foreach name="results" item="val">
+                        <tr>
+                            <th>{$val.name}</th>
+                            <th>{$val.phone_number}</th>
+                            <th>
+                                <if condition="$flag eq 0">
+                                    <if condition="$val.application_state eq 0">
+                                        <button type="button" onclick="editHire({$val.application_id},1)">录用</button>
+                                        <button type="button" onclick="editHire({$val.application_id},2)">不录用</button>
+                                    <elseif condition="$val.application_state eq 1"/>
+                                        <label>（已录用）</label>
+                                    <else/>
+                                        <label>（未录用）</label>
+                                    </if>
+                                <elseif condition="$flag eq 1"/>
+                                    <label>--</label>
+                                <else/>
+                                    <if condition="$val.performance eq 0">
+                                        <button type="button" onclick="editDone({$val.application_id},1)">完成</button>
+                                        <button type="button" onclick="editDone({$val.application_id},1)">未完成</button>
+                                    <elseif condition="$val.performance eq 1"/>
+                                        <label>（已完成）</label>
+                                    <else/>
+                                        <label>（未完成）</label>
+                                    </if>
+                                </if>
+                            </th>
+                        </tr>
+                    </foreach>
                 </tbody>
             </table>
 

@@ -72,7 +72,11 @@
                     <th>{$val.title}</th>
                     <th>{$val.publish_time}</th>
                     <th>{$ar}</th>
-                    <th><a href="{:U('Publish/getAllApply?activId='.$val['activity_id'])}">查看</a></th>
+                    <if condition="$intAr eq 1">
+                        <th><a href="{:U('Publish/getAllApply?activId='.$val['activity_id'])}">查看</a></th>
+                    <else />
+                        <th>--</th>
+                    </if>
                 </tr>
                 </foreach>
                 </tbody>
