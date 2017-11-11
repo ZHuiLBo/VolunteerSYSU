@@ -14,32 +14,69 @@
        window.onload = function(){
           userInfoPage_getUserInfo();
        };*/
-       function change(){
+       function phoneChange(){
            document.getElementById("phone").disabled = false;
+           document.getElementById("saveButton1").disabled = false;
+       }
+       function passwordChange(){
            document.getElementById("password").disabled = false;
-           document.getElementById("saveButton").disabled = false;
+           document.getElementById("confirmpswd").style.display="";
+           document.getElementById("password").value = "";
        }
        //弹框确认修改
-       function confirmAct(){ 
-          //获取当前的 电话号码 和 密码
+       function confirmPhone(){ 
+          //获取当前的 电话号码 
           var phone = document.getElementById("phone").value;
-          var pw = document.getElementById("password").value;//新密码
-          var oldpw = document.getElementById("OldPW").value;//原密码（md5加密）
           alert(phone);
-          alert(pw);
-          if(confirm('联系电话改为:'+phone+'\n密码改为：'+pw)) 
+          if(confirm('联系电话改为:'+phone)) 
           { 
               $.ajax({
                         type:"POST",
                         url:"{:U('Info/editInfo')}",
-                        data:{phone:phone, pw:pw, oldpw:oldpw},
+                        data:{phone:phone},
                         dataType: "json",
                         success:function(data){
                             alert(data.content);
+                            if(data.flag=='success')
+                              window.location.href="{:U('Info/showInfo')}";
                         }
                     });
           } 
        } 
+       function confirmPassword(){ 
+          //获取当前的 密码
+          var pw = document.getElementById("password").value;//新密码
+          alert(pw);
+          if(confirm('密码改为：'+pw)) 
+          { 
+              $.ajax({
+                        type:"POST",
+                        url:"{:U('Info/editInfo')}",
+                        //data:{pw:pw, oldpw:oldpw},
+                        data:{pw:pw},
+                        dataType: "json",
+                        success:function(data){
+                            alert(data.content);
+                            if(data.flag=='success')
+                              window.location.href="{:U('Info/showInfo')}";
+                        }
+                    });
+          } 
+       } 
+       /* 验证两次输入的密码一致 */
+       function checkcpassword(){ 
+          
+          var pw = document.getElementById("password").value;//新密码
+          var cpw = document.getElementById("cpassword").value;//第二次新密码
+          if(pw!=cpw){
+            document.getElementById("warning").style.display="";
+            document.getElementById("saveButton2").disabled = true;
+          }
+          else{
+            document.getElementById("warning").style.display="none";
+            document.getElementById("saveButton2").disabled = false;//两次密码一致才可以保存
+          }
+       }
     </script>
   </head>
   <body class='main page'>
@@ -88,17 +125,26 @@
             <tr>
               <td>联系电话：</td>
               <td><input type="text" id="phone" disabled="disabled" value="{$info.phone_number}"/></td>
+              <td><button type="button" onclick="phoneChange()">编辑</button></td>
+              <td><button type="button" onclick="confirmPhone()" id='saveButton1' disabled="disabled">保存</button></td>
             </tr>
             <tr>
               <td>密码：</td>
-              <td><input type="password" id="password" disabled="disabled" value="{$info.password}"/></td>
+              <!--<td><input type="password" id="password" disabled="disabled" value="{$info.password}"/></td>-->
+              <td><input type="password" id="password" disabled="disabled" value="xxxxxxxx"/></td>
+              <td><button type="button" onclick="passwordChange()">编辑</button></td>
+              <td><button type="button" onclick="confirmPassword()" id='saveButton2' disabled="disabled">保存</button></td>
+            </tr>
+            <tr id="confirmpswd" style="display:none">
+              <td>确认新密码：</td>
+              <td><input type="password" id="cpassword" onblur="checkcpassword();"/></td>
+              <td><label id='warning' style="display:none">两次输入的密码要相同！</label></td>
             </tr>
           </table>
         </div>
-        <button type="button" onclick="change()">编辑</button>
-        <!--<button type="button" onclick="userInfoPage_changeUserInfo()">保存</button>-->
-        <button type="button" onclick="confirmAct()" id='saveButton' disabled="disabled">保存</button>
-        <input type="hidden" id="OldPW" value="{$info.password}"/>
+        <!--<button type="button" onclick="change()">编辑</button>
+        <button type="button" onclick="confirmAct()" id='saveButton' disabled="disabled">保存</button>-->
+        <!--<input type="hidden" id="OldPW" value="{$info.password}"/>-->
       </div>
     </div>
   </div>

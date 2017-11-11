@@ -9,7 +9,7 @@ class IndexAction extends Action {
 				if($_SESSION['role']=='0')
 					$this->redirect('Attend/getAllActiv');
 				else
-					$this->redirect('Audit/index');
+					$this->redirect('Audit/auditList');
 
 			}else{
 				$this->redirect('Login/login');

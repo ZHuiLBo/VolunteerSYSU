@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title>发布活动</title>
+    <title>审核活动列表</title>
     <load href="__PUBLIC__/assets/stylesheets/application-a07755f5.css" />
     <load href="__PUBLIC__/assets/stylesheets/test.css" />
 
@@ -19,7 +19,7 @@
 
             $("#selectAuditResult").val({$intAr});
             $("#selectAuditResult").change(function(){
-                window.location.href = "__APP__/Publish/getAllPublish?selectAuditResult="+$("#selectAuditResult").val();
+                window.location.href = "__APP__/Audit/auditList?selectAuditResult="+$("#selectAuditResult").val();
             });
 
         });
@@ -33,7 +33,7 @@
 <include file="Public:header"/>
 <div id='wrapper'>
     <!-- Sidebar -->
-    <include file="Public:sidebar"/>
+    <!--<include file="Public:sidebar"/>-->
     <!-- Tools -->
     <!--<section id='tools'>-->
     <!--<ul class='breadcrumb' id='breadcrumb'>-->
@@ -44,7 +44,7 @@
     <div id='content'>
         <div class='panel panel-default grid'>
             <div class='panel-body filters'>
-                <a style="float:left" type="button" href="{:U('Publish/newActiv')}">新建活动</a>
+                <!--<a style="float:left" type="button" href="{:U('Publish/newActiv')}">新建活动</a>-->
                 <!--<li style="float:right">-->
                     <!--&lt;!&ndash;<input placeholder='关键字过滤' type='text' id="keyword">&ndash;&gt;-->
                     <!--<button type="button" onclick="newactiv()">新建活动</button>-->
@@ -59,24 +59,19 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick="selectAll('select','PubDataSet')"><span  style="vertical-align:middle;">全选</span></th>-->
                     <th>活动名称</th>
+                    <th>主办方</th>
                     <th>发布时间</th>
                     <th>审核情况</th>
-                    <th>报名情况</th>
                 </tr>
                 </thead>
                 <tbody id='publishactivtable'>
                 <foreach name="activties" item="val">
                 <tr>
-                    <th>{$val.title}</th>
+                    <th><a href="{:U('Audit/auditActiv?activId='.$val['activity_id'])}">{$val.title}</a></th>
+                    <th>{$val.sponsor}</th>
                     <th>{$val.publish_time}</th>
                     <th>{$ar}</th>
-                    <if condition="$intAr eq 1">
-                        <th><a href="{:U('Publish/getAllApply?activId='.$val['activity_id'])}">查看</a></th>
-                    <else />
-                        <th>--</th>
-                    </if>
                 </tr>
                 </foreach>
                 </tbody>
