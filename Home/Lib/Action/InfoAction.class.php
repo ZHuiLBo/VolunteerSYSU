@@ -24,7 +24,7 @@ class InfoAction extends Action {
     public function showTime(){
         $this->display();
     }
-
+  
     //修改个人信息
     public function editInfo(){
         if($_POST['phone']!=null){
@@ -53,7 +53,6 @@ class InfoAction extends Action {
             $returnData['flag']='success';
         }
         $this->ajaxReturn($returnData,'json');
-        //$this->redirect('Info/showInfo');
     }
 
 }
