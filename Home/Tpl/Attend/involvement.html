@@ -29,17 +29,10 @@
     <div id='content'>
         <div class='panel panel-default grid'>
             <div class='panel-body filters'>
-                <!--<button style="float:left" type="button" onclick="SelectedColPubDataSet()">批量收藏</button>-->
-                <!--<li style="float:right">-->
-                    <!--<input placeholder='关键字过滤' type='text' id="keyword">-->
-                    <!--<button type="button" onclick="pubsearch()">过滤</button>-->
-                <!--</li>-->
-
             </div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick="selectAll('select','PubDataSet')"><span  style="vertical-align:middle;">全选</span></th>
                     <th>活动标题</th>
                     <th>报名时间</th>
                     <th>报名状态</th>
@@ -49,16 +42,31 @@
                 </tr>
                 </thead>
                 <tbody id='involvementtable'>
+                <foreach name="results" item="val">
                 <tr>
-                    <th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick=""><span  style="vertical-align:middle;"></span></th>
-                    <th><a href="{:U('Attend/getActivInfo')}">活动1</a></th>
-                    <th>2017-10-12</th>
-                    <th>审核</th>
-                    <th>8</th>
-                    <th>正在进行</th>
-                    <th>11111111</th>
+                    <!--   
+                    <th><a href="{:U('Attend/getActivInfo?activity_id='.$val['activity_id'])}">{$val.title}</a></th>
+                    -->
+                    <th>{$val.title}</th>
+                    <th>{$val.apply_time}</th>
+                    <if condition="$val.applicaiton_state eq 0">
+                        <th>待审核</th>
+                    <elseif condition="$val.application_state eq 1"/>
+                        <th>已录用</th>
+                    <else/>
+                        <th>未录用</th>
+                    </if>
+                    <th>{$val.hours_a_day}</th>
+                    <if condition="$val.performance eq 0">
+                        <th>正在进行</th>
+                    <elseif condition="$val.performance eq 1"/>
+                        <th>已完成</th>
+                    <else/>
+                        <th>未完成</th>
+                    </if>
+                    <th>{$val.qq_number}</th>
                 </tr>
-
+                </foreach>
                 </tbody>
             </table>
 

@@ -32,6 +32,10 @@ class AttendAction extends Action {
 
     //查看已报名列表
     public function showApply(){
+        $Application=M('Application');
+        $where['user_id']=$_SESSION['user_id'];
+        $result=$Application->join('activity ON activity.activity_id = application.activity_id')->order('apply_time desc')->where($where)->select();
+        $this->assign('results',$result);
         $this->display('./Home/Tpl/Attend/involvement.html');
     }
 
