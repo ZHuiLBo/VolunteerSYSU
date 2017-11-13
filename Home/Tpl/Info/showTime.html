@@ -12,8 +12,30 @@
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script>
         window.onload = function(){
-            checktimeDataPage();
+            var flag={$flag};
+            var resultTable=document.getElementById('resultTable');
+            if(flag==1)
+                resultTable.style.display="";
+            else
+                resultTable.style.display="none";
         };
+
+        //得到一段时间内的工时
+        function getWorkTime(){ 
+            var start=document.getElementById("date_start").value;
+            var end=document.getElementById("date_end").value;
+            if(start=="" || end=="" )
+                alert("开始日期结束日期必填！");
+            else{
+                var d1 = new Date(start.replace(/\-/g, "\/"));  
+                var d2 = new Date(end.replace(/\-/g, "\/"));  
+                if(d1 >= d2)
+                    alert("开始时间不能大于等于结束时间！");  
+                else
+                    window.location.href="__APP__/Info/showTime?start="+start+"&end="+end;
+            }
+                
+        }
     </script>
 
 </head>
@@ -25,40 +47,55 @@
 <div id='wrapper'>
     <!-- Sidebar -->
     <include file="Public:sidebar"/>
-    <!-- Tools -->
-    <!--<section id='tools'>-->
-    <!--<ul class='breadcrumb' id='breadcrumb'>-->
-    <!--<a href="pubsearch.html">高级搜索</a>-->
-    <!--</ul>-->
-    <!--</section>-->
-    <!-- Content -->
     <div id='content'>
         <div class='panel panel-default grid'>
             <div class='panel-body filters'>
-                <!--<button style="float:left" type="button" onclick="SelectedColPubDataSet()">批量收藏</button>-->
-                <li style="float:right">
-                    <input placeholder='开始时间' type='text' id="date1">
-                    <input placeholder='结束时间' type='text' id="date2">
-                    <button type="button" onclick="checktime()">生成表格</button>
-                </li>
-
+                <table style="float:right">
+                    <tr>
+                        <td>开始日期</td>
+                        <td>
+                            <input type="date" id="date_start" name="date_start"/><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
+                        </td>
+                        <td>结束日期</td>
+                        <td>
+                            <input type="date" id="date_end" name="date_end"/><!--html5日期选择控件，目前只有Chrome和Opera提供下拉式日历支持-->
+                        </td>
+                        <td><button type="button" onclick="getWorkTime()">生成表格</button></td>
+                    </tr>
+                </table>
             </div>
+            <div id='resultTable' name='resultTable' style='display:none'>
             <table class="table">
-                <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th width="8%"> <input type="checkbox" name="select" style="zoom:130%;vertical-align:middle;" onclick="selectAll('select','PubDataSet')"><span  style="vertical-align:middle;">全选</span></th>-->
-                    <!--<th>活动名称</th>-->
-                    <!--<th>招募人数</th>-->
-                    <!--<th>活动日期</th>-->
-                    <!--<th>截止日期</th>-->
-                    <!--<th>面向人群</th>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody id='allactivtable'>-->
-
-                <!--</tbody>-->
+                <tr>
+                    <td>姓名：</td><td>{$info.name}</td>
+                    <td>学号：</td><td>{$info.username}</td>
+                    <td>学院：</td><td>{$info.academy}</td>
+                    <td>开始时间：</td><td>{$startTime}</td>
+                    <td>结束时间：</td><td>{$endTime}</td>
+                </tr>
             </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>活动名称</th>
+                    <th>活动日期</th>
+                    <th>公益时长</th>
+                </tr>
+                </thead>
+                <foreach name="results" item="val" key="k">
+                    <tr>
+                        <th>{$k}</th>
+                        <th>{$val.title}</th>
+                        <th>{$val.activity_date}</th>
+                        <th>{$val.hours_a_day}</th>
+                    </tr>
+                </foreach>
+                <tbody>
 
+                </tbody>
+            </table>
+            </div>
         </div>
 
     </div>
