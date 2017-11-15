@@ -43,10 +43,7 @@ class PublishAction extends Action {
         $apply_count=$Application->where($where)->count();
         $this->assign('apply_count',$apply_count);
 
-        //得到已录用人数
-        $where['application_state']='1';//已录用
-        $hire_count=$Application->where($where)->count();
-        $this->assign('hire_count',$hire_count);
+        
 
         //报名截至日期之前，显示（录用/不录用 按钮）,所有报名的人；中间日期无任何按钮，只显示已录用的人；活动日期之后，显示（完成/未完成 按钮），只显示已录用的人
         $currentTime=time();
@@ -62,10 +59,14 @@ class PublishAction extends Action {
             $flag='2';
             $where['application_state']='1';//只显示已录用的人
         }
-
         //得到学生信息，不同时间显示不同的人（所有报名的人或者已录用的人）
         $result=$Application->join('user ON user.user_id = application.user_id')->where($where)->select();
         $this->assign('results',$result);
+
+        //得到已录用人数
+        $where['application_state']='1';//已录用
+        $hire_count=$Application->where($where)->count();
+        $this->assign('hire_count',$hire_count);
 
         $this->assign('flag',$flag);
         $this->display('./Home/Tpl/Publish/checkActiv.html');
@@ -125,6 +126,15 @@ class PublishAction extends Action {
             $this->redirect('Publish/getAllApply', array('activId' => $activId));
         else
             $this->error("修改活动完成情况出错啦！");
+    }
+
+    //查看活动详情（只显示活动信息，包含审核意见）
+    public function publishActivInfo(){
+        $where['activity_id'] = $_GET['activId'];
+        $activty=M('Activity');
+        $result=$activty->where($where)->find();
+        $this->assign('activity',$result);
+        $this->display();
     }
 
 }

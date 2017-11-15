@@ -69,7 +69,7 @@
                 <tbody id='publishactivtable'>
                 <foreach name="activties" item="val">
                 <tr>
-                    <th>{$val.title}</th>
+                    <th><a href="{:U('Publish/publishActivInfo?activId='.$val['activity_id'])}">{$val.title}</a></th>
                     <th>{$val.publish_time}</th>
                     <th>{$ar}</th>
                     <if condition="$intAr eq 1">
