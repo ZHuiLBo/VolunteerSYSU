@@ -44,10 +44,10 @@
                 <tbody id='involvementtable'>
                 <foreach name="results" item="val">
                 <tr>
-                    <!--   
+                     
                     <th><a href="{:U('Attend/getActivInfo?activity_id='.$val['activity_id'])}">{$val.title}</a></th>
-                    -->
-                    <th>{$val.title}</th>
+                    
+                    <!--<th>{$val.title}</th>-->
                     <th>{$val.apply_time}</th>
                     <if condition="$val.applicaiton_state eq 0">
                         <th>待审核</th>
