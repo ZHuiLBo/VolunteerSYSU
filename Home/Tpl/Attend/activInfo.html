@@ -62,10 +62,6 @@
                 <label>已报名</label>
                 <input type="button" value="取消报名" id='unapply'>
                 <a href="{:U('Attend/getAllActiv')}">返回</a>
-            <!-- 人数满了 -->
-            <elseif condition="($apply_number eq 1)"/>
-                <input type="button" value="人数已满" disabled="disabled">
-                <a href="{:U('Attend/getAllActiv')}">返回</a>
             <!-- 如果没有过期 -->
             <elseif condition="($apply_date eq 0)"/>
                 <input type="button" value="申请" id='apply'>
@@ -87,9 +83,9 @@
         var activity_id = {$activity.activity_id};
         $('#apply').click(function(){
             $.ajax({
-                url:'./applyActivity',
+                url:'{:U('Attend/applyActivity')}',
                 type:'GET', //GET
-                async:true,    //或false,是否异步
+                async:false,    //或false,是否异步
                 data:{
                     'activity_id' : activity_id
                 },
@@ -98,9 +94,9 @@
         })
         $('#unapply').click(function(){
             $.ajax({
-                url:'./unapplyActivity',
+                url:'{:U('Attend/unapplyActivity')}',
                 type:'GET', //GET
-                async:true,    //或false,是否异步
+                async:false,    //或false,是否异步
                 data:{
                     'activity_id' : activity_id
                 },
