@@ -72,6 +72,7 @@
                     <td>学院：</td><td>{$info.academy}</td>
                     <td>开始时间：</td><td>{$startTime}</td>
                     <td>结束时间：</td><td>{$endTime}</td>
+                    <td>总时长：</td><td>{$totalHours}</td>
                 </tr>
             </table>
             <table class="table">
@@ -85,7 +86,7 @@
                 </thead>
                 <foreach name="results" item="val" key="k">
                     <tr>
-                        <th>{$k}</th>
+                        <th>{$k+1}</th>
                         <th>{$val.title}</th>
                         <th>{$val.activity_date}</th>
                         <th>{$val.hours_a_day}</th>
