@@ -39,12 +39,13 @@ class InfoAction extends Action {
             $arr=$user->field('academy, name, username')->where($where)->find();
             $this->assign('info',$arr);
     
-            //这部分未测试
             //得到该学生某段时间的服务时长
-            $where['performance']=1;//已完成
-            $where['activity_date'] = array(array('EGT',$startDate),array('ELT',$endDate),'AND');
+            $where['performance']='1';//已完成
+            $where['activity.activity_date']=array(array('egt',$startDate),array('elt',$endDate),'AND');
             $Application=M('Application');
-            $result=$Application->join('activity ON activity.activity_id = application.activity_id')->where($where)->field('title, activity_date, hours_a_day')->order('activity_date, desc')->select();
+            $result=$Application->join('activity ON activity.activity_id = application.activity_id')->where($where)->order('activity_date asc')->select();
+            $totalHours=$Application->join('activity ON activity.activity_id = application.activity_id')->where($where)->sum('activity.hours_a_day');
+            $this->assign('totalHours',$totalHours);
             $this->assign('results',$result);
             $this->display();
         }
