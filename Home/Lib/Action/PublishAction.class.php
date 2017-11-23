@@ -95,7 +95,7 @@ class PublishAction extends Action {
         }else{
              // 验证通过 
              $Activity->add();
-             $returnData['content']='成功创建一个活动！';
+             $returnData['content']='申请发布活动成功，请等待管理员审核！';
              $returnData['goBack']=1;//表示创建成功后，要跳转至 我的发布 页面
         }
         $this->ajaxReturn($returnData,'json');
