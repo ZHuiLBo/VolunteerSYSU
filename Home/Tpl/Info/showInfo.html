@@ -27,20 +27,17 @@
        function confirmPhone(){ 
           //获取当前的 电话号码 
           var phone = document.getElementById("phone").value;
-          if(confirm('联系电话改为:'+phone)) 
-          { 
-              $.ajax({
-                        type:"POST",
-                        url:"{:U('Info/editInfo')}",
-                        data:{phone:phone},
-                        dataType: "json",
-                        success:function(data){
-                            alert(data.content);
-                            if(data.flag=='success')
-                              window.location.href="{:U('Info/showInfo')}";
-                        }
-                    });
-          } 
+          $.ajax({
+              type:"POST",
+              url:"{:U('Info/editInfo')}",
+              data:{phone:phone},
+              dataType: "json",
+              success:function(data){
+                  alert(data.content);
+                  if(data.flag=='success')
+                    window.location.href="{:U('Info/showInfo')}";
+              }
+          });
        } 
        function confirmPassword(){ 
           //获取当前的 密码
