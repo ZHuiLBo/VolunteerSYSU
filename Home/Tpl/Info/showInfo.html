@@ -27,7 +27,6 @@
        function confirmPhone(){ 
           //获取当前的 电话号码 
           var phone = document.getElementById("phone").value;
-          alert(phone);
           if(confirm('联系电话改为:'+phone)) 
           { 
               $.ajax({
@@ -46,22 +45,19 @@
        function confirmPassword(){ 
           //获取当前的 密码
           var pw = document.getElementById("password").value;//新密码
-          alert(pw);
-          if(confirm('密码改为：'+pw)) 
-          { 
-              $.ajax({
-                        type:"POST",
-                        url:"{:U('Info/editInfo')}",
-                        //data:{pw:pw, oldpw:oldpw},
-                        data:{pw:pw},
-                        dataType: "json",
-                        success:function(data){
-                            alert(data.content);
-                            if(data.flag=='success')
-                              window.location.href="{:U('Info/showInfo')}";
-                        }
-                    });
-          } 
+          $.ajax({
+              type:"POST",
+              url:"{:U('Info/editInfo')}",
+              //data:{pw:pw, oldpw:oldpw},
+              data:{pw:pw},
+              dataType: "json",
+              success:function(data){
+                  alert(data.content);
+                  if(data.flag=='success')
+                    window.location.href="{:U('Info/showInfo')}";
+              }
+          });
+
        } 
        /* 验证两次输入的密码一致 */
        function checkcpassword(){ 
