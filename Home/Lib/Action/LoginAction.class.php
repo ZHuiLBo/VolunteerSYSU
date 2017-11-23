@@ -27,7 +27,8 @@ class LoginAction extends Action {
             $_SESSION['user_id']=$arr['user_id'];
             $_SESSION['role']=$arr['role'];
         
-            $this->success('用户登录成功', U('Index/index'));
+            //$this->success('用户登录成功', U('Index/index'));
+            $this->redirect('Index/index');
 
             }
         else{
