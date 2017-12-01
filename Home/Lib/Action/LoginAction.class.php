@@ -30,20 +30,19 @@ class LoginAction extends Action {
             //$this->success('用户登录成功', U('Index/index'));
             $this->redirect('Index/index');
 
-            }
-        else{
+        }else{
             //不存在 显示错误信息
             $this->error('该用户不存在');
-            }
-        }
-    
-        //退出
-        public function doLogout(){
-            $_SESSION=array();
-                if(isset($_COOKIE[session_name()])){
-                    setcookie(session_name(),'',time()-1,'/');
-                }
-            session_destroy();
-            $this->redirect('Index/index');
         }
     }
+    
+    //退出
+    public function doLogout(){
+        $_SESSION=array();
+            if(isset($_COOKIE[session_name()])){
+                setcookie(session_name(),'',time()-1,'/');
+            }
+        session_destroy();
+        $this->redirect('Index/index');
+    }
+}
