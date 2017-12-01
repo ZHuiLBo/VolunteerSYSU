@@ -89,7 +89,18 @@
                 data:{
                     'activity_id' : activity_id
                 },
-                success:function(){window.location.reload()},
+                success:function(data){
+                    if (data['apply'] == 1)
+                    {
+                        alert('申请成功');
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        alert('申请失败');
+                        window.location.reload();
+                    }
+                },
             })
         })
         $('#unapply').click(function(){
@@ -100,7 +111,17 @@
                 data:{
                     'activity_id' : activity_id
                 },
-                success:function(){window.location.reload()},
+                success:function(data){
+                    if (data['apply'] == 1)
+                    {
+                        alert('取消申请成功');
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        window.location.reload();
+                    }
+                },
             })
         })
     });

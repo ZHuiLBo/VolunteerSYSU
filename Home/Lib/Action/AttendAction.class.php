@@ -58,13 +58,22 @@ class AttendAction extends Action {
         $data['user_id'] = $_SESSION['user_id'];
         $data['apply_time'] = date("Y-m-d H:i:s",time());
         $result = $application->add($data);
+
+        
+
         if ($result){
             //修改活动已申请人数
             $arr[number_of_applicants] = $arr[number_of_applicants] + 1;
             $activity->where("activity_id='%s'", $_GET['activity_id'])->save($arr);
 
-            $this->ajaxReturn();
+            $returnData['apply'] = 1;
+            $this->ajaxReturn($returnData, 'json');
         }
+        else
+        {
+            $returnData['apply'] = 0;
+            $this->ajaxReturn($returnData, 'json');
+        } 
     }
 
     //取消报名
@@ -79,9 +88,15 @@ class AttendAction extends Action {
             $arr=$activity->where("activity_id='%s'", $_GET['activity_id'])->find();
             $arr[number_of_applicants] = $arr[number_of_applicants] - $res;
             $activity->where("activity_id='%s'", $_GET['activity_id'])->save($arr);
-        }
 
-        $this->ajaxReturn();
+            $returnData['apply'] = 1;
+            $this->ajaxReturn($returnData, 'json');
+        }
+        else
+        {
+            $returnData['apply'] = 0;
+            $this->ajaxReturn($returnData, 'json');
+        }        
     }
 
 
